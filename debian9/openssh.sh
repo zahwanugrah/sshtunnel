@@ -9,12 +9,12 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 # detail nama perusahaan
 country=ID
-state=Semarang
+state=Purworejo
 locality=JawaTengah
-organization=hidessh
-organizationalunit=HideSSH
-commonname=hidessh.com
-email=admin@hidessh.com
+organization=vpnstunnel
+organizationalunit=vpninjector
+commonname=vpnstunnel.com
+email=admin@vpnmods.com
 
 # go to root
 cd
@@ -23,8 +23,8 @@ cd
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
-# set time GMT +7 jakarta
-ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+# set time GMT +8 MALINGSIAL
+ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
@@ -102,8 +102,8 @@ echo "========================================================="
 # install dropbear
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=44/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 77 "/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 777 "/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/ssh restart
@@ -131,11 +131,11 @@ echo "========================================================="
 
 # install webmin
 cd
-#wget http://prdownloads.sourceforge.net/webadmin/webmin_1.910_all.deb
-#dpkg --install webmin_1.910_all.deb;
+#wget http://prdownloads.sourceforge.net/webadmin/webmin_1.960_all.deb
+#dpkg --install webmin_1.960_all.deb;
 #apt-get -y -f install;
 #sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-#rm -f webmin_1.910_all.deb
+#rm -f webmin_1.960_all.deb
 #/etc/init.d/webmin restart
 
 echo "=================  install stunnel  ====================="
@@ -150,14 +150,14 @@ socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 [dropbear]
-accept = 222
+accept = 441
 connect = 127.0.0.1:22
 [dropbear]
 accept = 444
-connect = 127.0.0.1:44
+connect = 127.0.0.1:442
 [dropbear]
-accept = 777
-connect = 127.0.0.1:77
+accept = 445
+connect = 127.0.0.1:777
 
 END
 
