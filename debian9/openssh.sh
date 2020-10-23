@@ -9,12 +9,12 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 
 # detail nama perusahaan
 country=ID
-state=Purworejo
+state=PURWOREJO
 locality=JawaTengah
-organization=vpnstunnel
-organizationalunit=vpninjector
-commonname=vpnstunnel.com
-email=admin@vpnmods.com
+organization=VPNstunnel
+organizationalunit=VPNinjector
+commonname=vpnmods
+email=admin@sshviral.com
 
 # go to root
 cd
@@ -23,8 +23,8 @@ cd
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
-# set time GMT +8 MALINGSIAL
-ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
+# set time GMT +7 jakarta
+ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
@@ -102,8 +102,8 @@ echo "========================================================="
 # install dropbear
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 777 "/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=44/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 77 "/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/ssh restart
@@ -122,7 +122,7 @@ chown -R vnstat:vnstat /var/lib/vnstat
 # install squid3
 cd
 apt-get -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/zahwanugrah/sshtunnel/master/debian9/squid3.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf;
 /etc/init.d/squid restart
 
@@ -131,11 +131,11 @@ echo "========================================================="
 
 # install webmin
 cd
-#wget http://prdownloads.sourceforge.net/webadmin/webmin_1.960_all.deb
-#dpkg --install webmin_1.960_all.deb;
+#wget http://prdownloads.sourceforge.net/webadmin/webmin_1.910_all.deb
+#dpkg --install webmin_1.910_all.deb;
 #apt-get -y -f install;
 #sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-#rm -f webmin_1.960_all.deb
+#rm -f webmin_1.910_all.deb
 #/etc/init.d/webmin restart
 
 echo "=================  install stunnel  ====================="
@@ -150,15 +150,14 @@ socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 [dropbear]
-accept = 441
+accept = 222
 connect = 127.0.0.1:22
 [dropbear]
 accept = 444
-connect = 127.0.0.1:442
+connect = 127.0.0.1:44
 [dropbear]
-accept = 445
-connect = 127.0.0.1:777
-
+accept = 777
+connect = 127.0.0.1:77
 END
 
 echo "=================  membuat Sertifikat OpenSSL ======================"
@@ -182,7 +181,7 @@ cd
 apt-get -y install sslh
 
 #configurasi sslh
-wget -O /etc/default/sslh "https://raw.githubusercontent.com/zahwanugrah/sshtunnel/master/sslh-conf"
+wget -O /etc/default/sslh "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/sslh-conf"
 service sslh restart
 
 echo "=================  Install badVPn (VC and Game) ======================"
@@ -261,7 +260,7 @@ chmod +x /usr/bin/build
 chmod +x /etc/rc.local
 
 # Custom Banner SSH
-wget -O /etc/issue.net "https://raw.githubusercontent.com/zahwanugrah/sshtunnel/master/debian9/banner-custom.conf"
+wget -O /etc/issue.net "https://github.com/idtunnel/sshtunnel/raw/master/debian9/banner-custom.conf"
 chmod +x /etc/issue.net
 
 echo "Banner /etc/issue.net" >> /etc/ssh/sshd_config
@@ -299,32 +298,32 @@ echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # download script
-#cd /usr/bin
-#wget -O menu "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/menu.sh"
-#wget -O usernew "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/usernew.sh"
-#wget -O trial "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/trial.sh"
-#wget -O hapus "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/hapus.sh"
-#wget -O cek "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/user-login.sh"
-#wget -O member "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/user-list.sh"
-#wget -O jurus69 "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/restart.sh"
-#wget -O speedtest "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/speedtest_cli.py"
-#wget -O info "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/info.sh"
-#wget -O about "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/about.sh"
-#wget -O delete "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/delete.sh"
+cd /usr/bin
+wget -O menu "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/menu.sh"
+wget -O usernew "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/trial.sh"
+wget -O hapus "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/hapus.sh"
+wget -O cek "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/user-login.sh"
+wget -O member "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/user-list.sh"
+wget -O jurus69 "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/restart.sh"
+wget -O speedtest "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/speedtest_cli.py"
+wget -O info "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/info.sh"
+wget -O about "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/about.sh"
+wget -O delete "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/delete.sh"
 
 echo "0 0 * * * root /sbin/reboot" > /etc/cron.d/reboot
 
-#chmod +x menu
-#chmod +x usernew
-#chmod +x trial
-#chmod +x hapus
-#chmod +x cek
-#chmod +x member
-#chmod +x jurus69
-#chmod +x speedtest
-#chmod +x info
-#chmod +x about
-#chmod +x delete
+chmod +x menu
+chmod +x usernew
+chmod +x trial
+chmod +x hapus
+chmod +x cek
+chmod +x member
+chmod +x jurus69
+chmod +x speedtest
+chmod +x info
+chmod +x about
+chmod +x delete
 
 # finishing
 cd
@@ -346,7 +345,7 @@ echo ""  | tee -a log-install.txt
 echo "Service"  | tee -a log-install.txt
 echo "-------"  | tee -a log-install.txt
 echo "OpenSSH   : 22,143"  | tee -a log-install.txt
-echo "Dropbear  : 442,777"  | tee -a log-install.txt
+echo "Dropbear  : 109,456"  | tee -a log-install.txt
 echo "SSL       : 443"  | tee -a log-install.txt
 echo "Squid3    : 80,8080,3128 (limit to IP SSH)"  | tee -a log-install.txt
 echo "badvpn    : badvpn-udpgw port 7300"  | tee -a log-install.txt
@@ -404,4 +403,4 @@ echo "========================================================="
 #/etc/init.d/openvpn restart
 
 # Delete script
-rm -f /root/openssh.sh
+#rm -f /root/openvpn.sh
