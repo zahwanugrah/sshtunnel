@@ -122,7 +122,7 @@ chown -R vnstat:vnstat /var/lib/vnstat
 # install squid3
 cd
 apt-get -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/debian9/squid3.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/zahwanugrah/sshtunnel/master/debian9/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf;
 /etc/init.d/squid restart
 
@@ -346,7 +346,7 @@ echo ""  | tee -a log-install.txt
 echo "Service"  | tee -a log-install.txt
 echo "-------"  | tee -a log-install.txt
 echo "OpenSSH   : 22,143"  | tee -a log-install.txt
-echo "Dropbear  : 442,444,445"  | tee -a log-install.txt
+echo "Dropbear  : 442,777"  | tee -a log-install.txt
 echo "SSL       : 443"  | tee -a log-install.txt
 echo "Squid3    : 80,8080,3128 (limit to IP SSH)"  | tee -a log-install.txt
 echo "badvpn    : badvpn-udpgw port 7300"  | tee -a log-install.txt
