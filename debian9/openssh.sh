@@ -182,7 +182,7 @@ cd
 apt-get -y install sslh
 
 #configurasi sslh
-wget -O /etc/default/sslh "https://raw.githubusercontent.com/idtunnel/sshtunnel/master/sslh-conf"
+wget -O /etc/default/sslh "https://raw.githubusercontent.com/zahwanugrah/sshtunnel/master/sslh-conf"
 service sslh restart
 
 echo "=================  Install badVPn (VC and Game) ======================"
